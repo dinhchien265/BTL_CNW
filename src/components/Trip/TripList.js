@@ -36,7 +36,9 @@ class TripList extends React.Component {
         let tripList;
         tripList = this.props.tripList.map((trip, index) => {
             return (
-                <Trip key={index} trip={trip} />
+                <Link className="col-4 mt-3" key={index} to={"/TripDetail/" + trip.id} onClick={() => localStorage.setItem("param", trip.id)}>
+                    <Trip trip={trip} />
+                </Link>
             )
         })
         return tripList;

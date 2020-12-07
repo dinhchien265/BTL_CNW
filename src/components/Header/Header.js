@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
 
+
     render() {
         return (
             <div className="shadow header">
@@ -16,8 +17,8 @@ class Header extends React.Component {
                         <img className="my-auto" src="https://www.triip.me/assets/img/triip_tiim_logo.png" alt="logo" style={{ width: 50, height: 50 }}></img>
                     </Link>
                     <div className="my-auto">
-                        <a className="h4 p-3 text-dark">Create trip</a>
-                        <a className="h4 p-3 text-dark">Experience</a>
+                        <Link to="/CreateTrip" className="h4 p-3 text-dark">Create trip</Link>
+                        <Link to="/" className="h4 p-3 text-dark">Experience</Link>
                     </div>
                     <div className="my-auto">
                         <Register />

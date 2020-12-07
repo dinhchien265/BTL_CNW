@@ -1,14 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Trip from './Trip';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useParams,
-    useRouteMatch
-} from "react-router-dom";
 import TripList from './TripList';
 
 
@@ -49,16 +40,16 @@ class CityTrips extends React.Component {
         )
     }
 
-    showTripList = () => {
-        let tripList;
-        console.log(this.state.tripList);
-        tripList = this.state.tripList.map((trip, index) => {
-            return (
-                <Trip key={index} trip={trip} />
-            )
-        })
-        return tripList;
-    }
+    // showTripList = () => {
+    //     let tripList;
+    //     console.log(this.state.tripList);
+    //     tripList = this.state.tripList.map((trip, index) => {
+    //         return (
+    //             <Trip key={index} trip={trip} />
+    //         )
+    //     })
+    //     return tripList;
+    // }
 }
 
 export default CityTrips;

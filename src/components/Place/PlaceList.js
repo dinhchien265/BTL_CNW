@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Place from './Place';
 import axios from 'axios';
-import * as StringConstant from './../constants/String';
+import * as StringConstant from '../../constants/String';
 
 class PlaceList extends React.Component {
 

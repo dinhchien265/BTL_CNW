@@ -1,12 +1,12 @@
 import React from 'react';
 import '../App.css';
-import PlaceList from './PlaceList';
+import PlaceList from './Place/PlaceList';
 
 class Home extends React.Component {
     render() {
         return (
             <div>
-                <div className="home-banner">
+                <div className="banner" style={{ backgroundImage: "url(https://www.triip.me/app/assets/img/home/home-banner-4.jpg)" }}>
                     <div className="pt-5">
                         <h1 className="text-white text-center pt-5">Book a stay & shopping tours<br />by locals seamlessly</h1>
                         <h6 className="text-white text-center">The happiest way to travel in 227 countries</h6>

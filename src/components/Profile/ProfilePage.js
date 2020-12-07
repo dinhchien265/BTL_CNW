@@ -1,6 +1,6 @@
 import React from 'react';
-import '../App.css';
 import AccountInfomation from './AccountInfomation';
+import EditAccountInfomation from './EditAccountInfomation';
 import {
     BrowserRouter as Router,
     Switch,
@@ -8,7 +8,7 @@ import {
     Link,
     NavLink
 } from "react-router-dom";
-import TripList from './TripList';
+import TripList from '../Trip/TripList';
 import YourTrip from './YourTrips';
 
 class ProfilePage extends React.Component {
@@ -36,10 +36,13 @@ class ProfilePage extends React.Component {
                     </div>
                     <div className="col-10 border">
                         <Switch>
-                            <Route path="/profile/account">
+                            <Route exact path="/profile/account/edit">
+                                <EditAccountInfomation />
+                            </Route>
+                            <Route exact path="/profile/account">
                                 <AccountInfomation />
                             </Route>
-                            <Route path="/profile/your-trip">
+                            <Route exact path="/profile/your-trip">
                                 <YourTrip />
                             </Route>
                         </Switch>

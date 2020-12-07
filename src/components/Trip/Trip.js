@@ -1,5 +1,5 @@
 import React from 'react';
-import * as StringConstant from './../constants/String';
+import * as StringConstant from './../../constants/String';
 
 class Trip extends React.Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class Trip extends React.Component {
     render() {
 
         return (
-            <div className="col-4 mt-3" onMouseOver={this.showDescription} onMouseOut={this.hideDescription}>
+            <div onMouseOver={this.showDescription} onMouseOut={this.hideDescription}>
                 <div className="trip d-flex" style={{ backgroundImage: "url(" + StringConstant.IMAGE_PATH + this.state.tripInfo.cover + ")", backgroundPosition: "center" }}>
                     <span className="topright">{this.state.tripInfo.price + " VND"}</span>
                     <span className="mx-auto my-auto text-center w-50">{this.state.description}</span>

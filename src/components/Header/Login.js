@@ -1,9 +1,8 @@
 
 import React from 'react';
 import axios from 'axios';
-import { login } from '../actions';
+import { login } from '../../actions';
 import { connect } from 'react-redux';
-import * as types from './../constants/ActionType';
 
 
 class Login extends React.Component {

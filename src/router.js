@@ -1,15 +1,26 @@
 import React from 'react';
-import CityTrips from './components/CityTrips';
+import CityTrips from './components/Trip/CityTrips';
 import Home from './components/Home';
 import NotFoundPage from './components/NotFoundPage';
-import ProfilePage from './components/ProfilePage';
-import TripList from './components/TripList';
+import ProfilePage from './components/Profile/ProfilePage';
+import CreateTrip from './components/CreateTrip/CreateTrip';
+import TripDetail from './components/Trip/TripDetail';
 
 const routes = [
     {
         path: '/',
         exact: true,
         main: () => <Home />
+    },
+    {
+        path: '/CreateTrip',
+        exact: false,
+        main: () => <CreateTrip />
+    },
+    {
+        path: '/TripDetail',
+        exact: false,
+        main: () => <TripDetail />
     },
     {
         path: '/profile',
