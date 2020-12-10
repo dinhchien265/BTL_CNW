@@ -8,8 +8,8 @@ import {
     Link,
     NavLink
 } from "react-router-dom";
-import TripList from '../Trip/TripList';
 import YourTrip from './YourTrips';
+import EditTrip from '../Trip/EditTrip';
 
 class ProfilePage extends React.Component {
     render() {
@@ -44,6 +44,9 @@ class ProfilePage extends React.Component {
                             </Route>
                             <Route exact path="/profile/your-trip">
                                 <YourTrip />
+                            </Route>
+                            <Route path="/profile/edit-trip">
+                                <EditTrip />
                             </Route>
                         </Switch>
                     </div>

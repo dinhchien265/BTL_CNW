@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import RegistContributor from './../RegistContributor/RegistContributor';
+import { withRouter } from "react-router-dom";
 
-class CreateTrip extends React.Component {
+class EditTrip extends React.Component {
 
     constructor(props) {
         super(props);
@@ -16,15 +16,14 @@ class CreateTrip extends React.Component {
             languages: '',
             group_size: '',
             city: '',
-            file: '',
-            role: ''
+            file: ''
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         axios({
             method: 'GET',
-            url: 'https://mighty-retreat-21374.herokuapp.com/api/profile/getUserInfo?token=' + localStorage.getItem("token"),
+            url: 'https://mighty-retreat-21374.herokuapp.com/api/trip/byId?trip_id=' + localStorage.getItem("param"),
             data: null
         }).then((response) => {
             // handle success
@@ -32,7 +31,16 @@ class CreateTrip extends React.Component {
             // this.state.name = response.name;
             // this.state.email = response.email;
             this.setState({
-                role: response.data.role,
+                name: response.data.trip.name,
+                description: response.data.trip.description,
+                location: response.data.trip.location,
+                duration: response.data.trip.duration,
+                departure: response.data.trip.departure,
+                price: response.data.trip.price,
+                languages: response.data.trip.languages,
+                group_size: response.data.trip.group_size,
+                city: response.data.trip.city,
+                file: ''
             })
         }).catch((error) => {
             // handle error
@@ -40,13 +48,14 @@ class CreateTrip extends React.Component {
         });
     }
 
-    createTrip = (event) => {
+    editTrip = (event) => {
         event.preventDefault();
         console.log("abc");
         axios({
-            method: 'POST',
-            url: 'https://mighty-retreat-21374.herokuapp.com/api/trip/create?token=' + localStorage.getItem("token"),
+            method: 'PUT',
+            url: 'https://mighty-retreat-21374.herokuapp.com/api/trip/edit?token=' + localStorage.getItem("token"),
             data: {
+                trip_id: localStorage.getItem("param"),
                 name: this.state.name,
                 description: this.state.description,
                 location: this.state.location,
@@ -79,12 +88,14 @@ class CreateTrip extends React.Component {
                     // handle success
                     console.log(response.data);
                     alert("Success");
+                    this.props.history.push("/profile/your-trip");
                 }).catch((error) => {
                     // handle error
                     console.log(error);
                 });
 
             }
+            else this.props.history.push("/profile/your-trip");
         }).catch((error) => {
             // handle error
             console.log(error);
@@ -101,13 +112,33 @@ class CreateTrip extends React.Component {
             file: event.target.files[0]
         })
     }
+    deleteTrip = (event) => {
+        event.preventDefault();
+        axios({
+            method: 'DELETE',
+            url: 'https://mighty-retreat-21374.herokuapp.com/api/trip/delete?token=' + localStorage.getItem("token"),
+            data: {
+                trip_id: localStorage.getItem("param")
+            }
 
+        }).then((response) => {
+            // handle success
+            console.log(response.data);
+            this.props.history.push("/profile/your-trip");
+        }).catch((error) => {
+            // handle error
+            console.log(error);
+        });
+    }
+    cancel = (event) => {
+        event.preventDefault();
+        this.props.history.push("/profile/your-trip");
+    }
 
     render() {
-        if (this.state.role !== "contributor") return (<RegistContributor />)
         return (
             <div className="container mt-5">
-                <form onSubmit={this.createTrip} >
+                <form onSubmit={this.editTrip} >
                     <label>Name</label>
                     <input type="text" className="form form-control" name="name" onChange={this.onChange} value={this.state.name} required />
                     <label>Description</label>
@@ -127,13 +158,14 @@ class CreateTrip extends React.Component {
                     <label>City</label>
                     <input type="text" className="form form-control" name="city" onChange={this.onChange} value={this.state.city} required />
                     <label>Cover</label>
-                    <input type="file" className="form form-control" name="cover" onChange={this.handleFile} required />
-                    <input type="submit" className="btn btn-info m-3" value="Create"></input>
-                    <button className="btn btn-info">Cancel</button>
+                    <input type="file" className="form form-control" name="cover" onChange={this.handleFile} />
+                    <input type="submit" className="btn btn-info m-1" value="Save"></input>
+                    <button className="btn btn-info m-1" onClick={this.deleteTrip}>Delete</button>
+                    <button className="btn btn-info m-1" onClick={this.cancel}>Cancel</button>
                 </form>
             </div>
         )
     }
 }
 
-export default CreateTrip;
+export default withRouter(EditTrip);

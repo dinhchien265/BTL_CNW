@@ -1,6 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import TripList from './../Trip/TripList';
+import Trip from './../Trip/Trip';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams,
+    useRouteMatch
+} from "react-router-dom";
 
 
 class YourTrip extends React.Component {
@@ -31,8 +40,24 @@ class YourTrip extends React.Component {
 
     render() {
         return (
-            <TripList tripList={this.state.tripList} />
+            <div className="container mt-5">
+                <div className="row">
+                    {this.showTripList()}
+                </div>
+            </div>
         )
+    }
+
+    showTripList = () => {
+        let tripList;
+        tripList = this.state.tripList.map((trip, index) => {
+            return (
+                <Link className="col-4 mt-3" key={index} to={"/profile/edit-trip/" + trip.id} onClick={() => localStorage.setItem("param", trip.id)}>
+                    <Trip trip={trip} />
+                </Link>
+            )
+        })
+        return tripList;
     }
 }
 export default YourTrip;
