@@ -22,7 +22,10 @@ class TripList extends React.Component {
 
 
     render() {
-        console.log("render TripList");
+        if (this.props.tripList === null || this.props.tripList.length === 0)
+            return (
+                <div className="h1 text-primary text-center mt-5">There is no trip</div>
+            )
         return (
             <div className="container mt-5">
                 <div className="row">

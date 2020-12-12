@@ -121,7 +121,7 @@ class CreateTrip extends React.Component {
                     <label>Price</label>
                     <input type="number" className="form form-control" name="price" onChange={this.onChange} value={this.state.price} required />
                     <label>languages</label>
-                    <input type="text" className="form form-control" name="languages" onChange={this.onChange} value={this.state.languages} required />
+                    <input type="number" className="form form-control" name="languages" onChange={this.onChange} value={this.state.languages} required />
                     <label>Group size</label>
                     <input type="number" className="form form-control" name="group_size" onChange={this.onChange} value={this.state.group_size} required />
                     <label>City</label>

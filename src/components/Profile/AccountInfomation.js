@@ -21,7 +21,10 @@ class AccountInfomation extends React.Component {
     componentWillMount() {
         axios({
             method: 'GET',
-            url: 'https://mighty-retreat-21374.herokuapp.com/api/profile/getUserInfo?token=' + localStorage.getItem("token"),
+            url: 'https://mighty-retreat-21374.herokuapp.com/api/profile/getUserInfo',
+            headers: {
+                Authorization: "Bearer" + localStorage.getItem("token")
+            },
             data: null
         }).then((response) => {
             // handle success

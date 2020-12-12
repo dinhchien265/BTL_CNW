@@ -1,6 +1,8 @@
 import React from 'react';
 import * as StringConstant from './../../constants/String';
 import axios from 'axios';
+import ListComment from '../Comment/ListComment';
+import CreateComment from '../Comment/CreateComment';
 
 class TripDetail extends React.Component {
     constructor(props) {
@@ -110,7 +112,7 @@ class TripDetail extends React.Component {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="participants">Participants:</label>
-                                    <input type="number" className="form-control" name="participants" onChange={this.onChange} required />
+                                    <input type="number" className="form-control" min="0" max={this.state.trip.group_size} name="participants" onChange={this.onChange} value={this.state.participants} required />
                                 </div>
                                 <p>Total: {this.state.participants * this.state.trip.price} VND</p>
 
@@ -120,8 +122,13 @@ class TripDetail extends React.Component {
                     </div>
                     <div className="h1">
                         Description
-                        </div>
+                    </div>
                     <p>{this.state.trip.description}</p>
+                    <div className="h1">
+                        Comment
+                    </div>
+                    <ListComment trip_id={localStorage.getItem("param")} />
+                    <CreateComment />
                 </div>
             </div>
         )

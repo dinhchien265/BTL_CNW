@@ -24,7 +24,10 @@ class YourTrip extends React.Component {
     componentWillMount() {
         axios({
             method: 'GET',
-            url: 'https://mighty-retreat-21374.herokuapp.com/api/trip/user?token=' + localStorage.getItem("token"),
+            url: 'https://mighty-retreat-21374.herokuapp.com/api/trip/user',
+            headers: {
+                Authorization: "Bearer" + localStorage.getItem("token")
+            },
             data: null
         }).then((response) => {
             // handle success

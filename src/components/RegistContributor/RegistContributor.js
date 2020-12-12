@@ -56,11 +56,11 @@ class RegistContributor extends React.Component {
                 <form onSubmit={this.regist}>
                     <label>Intro</label>
                     <input type="text" className="form form-control" name="intro" onChange={this.onChange} value={this.state.intro} required />
-                    <label>languages</label>
+                    <label>Languages</label>
                     <input type="text" className="form form-control" name="languages" onChange={this.onChange} value={this.state.languages} required />
                     <label>Address</label>
                     <input type="text" className="form form-control" name="address" onChange={this.onChange} value={this.state.address} required />
-                    <label>experiences</label>
+                    <label>Experiences</label>
                     <input type="text" className="form form-control" name="experiences" onChange={this.onChange} value={this.state.experiences} required />
 
                     <input type="submit" className="btn btn-info m-1" value="Send"></input>

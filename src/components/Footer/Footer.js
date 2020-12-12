@@ -4,7 +4,7 @@ class Footer extends React.Component {
 
     render() {
         return (
-            <div className="container mt-5">
+            <div className="container-fluid mt-5 ">
                 <div className="row">
                     <div className="col-4 my-auto mx-auto">
                         <img className="my-auto mx-auto" src="https://www.triip.me/assets/img/triip_tiim_logo.png" alt="logo" style={{ width: 50, height: 50 }}></img>

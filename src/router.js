@@ -13,6 +13,11 @@ const routes = [
         main: () => <Home />
     },
     {
+        path: '/home',
+        exact: false,
+        main: () => <Home />
+    },
+    {
         path: '/CreateTrip',
         exact: false,
         main: () => <CreateTrip />
