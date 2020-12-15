@@ -104,6 +104,9 @@ class CreateTrip extends React.Component {
 
 
     render() {
+        if (localStorage.getItem("token") === null) return (
+            <div className="h3 text-center">Login first</div>
+        )
         if (this.state.role !== "contributor") return (<RegistContributor />)
         return (
             <div className="container mt-5">

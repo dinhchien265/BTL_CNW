@@ -7,6 +7,7 @@ class Logout extends React.Component {
 
     onHandleLogout = () => {
         this.props.logout();
+        localStorage.removeItem("token");
     }
 
     render() {

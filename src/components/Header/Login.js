@@ -36,6 +36,7 @@ class Login extends React.Component {
             localStorage.setItem("token", response.data.token);
             this.props.login();
             console.log(response.data.token);
+            window.location.reload();
         }).catch((error) => {
             // handle error
             console.log(error);
