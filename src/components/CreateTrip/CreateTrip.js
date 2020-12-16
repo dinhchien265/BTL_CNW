@@ -17,6 +17,7 @@ class CreateTrip extends React.Component {
             group_size: '',
             city: '',
             file: '',
+            files: '',
             role: ''
         }
     }
@@ -63,27 +64,10 @@ class CreateTrip extends React.Component {
             console.log(response.data);
             let id = response.data.trip.id;
             let file = this.state.file;
+            console.log("111111")
             console.log(file);
             if (file !== '') {
-                let formData = new FormData();
-                formData.append('cover', file);
-                console.log(file);
-                for (var key of formData.entries()) {
-                    console.log(key[1]);
-                }
-                axios({
-                    method: 'POST',
-                    url: 'https://mighty-retreat-21374.herokuapp.com/api/trip/updateCover/' + id + '?token=' + localStorage.getItem("token"),
-                    data: formData
-                }).then((response) => {
-                    // handle success
-                    console.log(response.data);
-                    alert("Success");
-                }).catch((error) => {
-                    // handle error
-                    console.log(error);
-                });
-
+                this.uploadCoverImageFile(file, id);
             }
         }).catch((error) => {
             // handle error
@@ -96,11 +80,72 @@ class CreateTrip extends React.Component {
             [event.target.name]: event.target.value
         })
     }
-    handleFile = (event) => {
+    handleCoverImageFile = (event) => {
         this.setState({
             file: event.target.files[0]
         })
     }
+
+    handleImageFile = (event) => {
+        this.setState({
+            files: event.target.files
+        })
+    }
+
+    uploadCoverImageFile = (file, idTrip) => {
+        console.log("22222222");
+        let formData = new FormData();
+        formData.append('cover', file);
+        console.log(file);
+        for (var key of formData.entries()) {
+            console.log(key[1]);
+        }
+        axios({
+            method: 'POST',
+            url: 'https://mighty-retreat-21374.herokuapp.com/api/trip/updateCover/' + idTrip + '?token=' + localStorage.getItem("token"),
+            data: formData
+        }).then((response) => {
+            // handle success
+            console.log(response.data);
+            let files = this.state.files;
+            console.log("444444");
+            if (files !== '') {
+                this.uploadImageFile(files, idTrip);
+            }
+
+        }).catch((error) => {
+            // handle error
+            console.log(error);
+        });
+    }
+
+    uploadImageFile = (files, idTrip) => {
+        console.log("333333");
+        let formData = new FormData();
+        for (let i = 0; i < files.length; i++) {
+            formData.append(`image`, files[i])
+        }
+        for (var key of formData.entries()) {
+            console.log(key[1]);
+        }
+
+        axios({
+            method: 'POST',
+            url: 'https://mighty-retreat-21374.herokuapp.com/api/trip/addImage/' + idTrip + '?token=' + localStorage.getItem("token"),
+            headers: {
+                'Content-type': 'multipart/form-data; boundary=<calculated when request is sent>'
+            },
+            data: formData
+        }).then((response) => {
+            // handle success
+            console.log(response.data);
+            alert("Success");
+        }).catch((error) => {
+            // handle error
+            console.log(error);
+        });
+    }
+
 
 
     render() {
@@ -121,13 +166,15 @@ class CreateTrip extends React.Component {
                     <label>Price</label>
                     <input type="number" className="form form-control" name="price" onChange={this.onChange} value={this.state.price} required />
                     <label>languages</label>
-                    <input type="string" className="form form-control" name="languages" onChange={this.onChange} value={this.state.languages} required />
+                    <input type="text" className="form form-control" name="languages" onChange={this.onChange} value={this.state.languages} required />
                     <label>Group size</label>
                     <input type="number" className="form form-control" name="group_size" onChange={this.onChange} value={this.state.group_size} required />
                     <label>City</label>
                     <input type="text" className="form form-control" name="city" onChange={this.onChange} value={this.state.city} required />
                     <label>Cover</label>
-                    <input type="file" className="form form-control" name="cover" onChange={this.handleFile} required />
+                    <input type="file" className="form form-control" name="cover" onChange={this.handleCoverImageFile} required />
+                    <label>Image</label>
+                    <input type="file" className="form form-control" name="mulfile" onChange={this.handleImageFile} multiple />
                     <input type="submit" className="btn btn-info m-3" value="Create"></input>
                     <button className="btn btn-info">Cancel</button>
                 </form>

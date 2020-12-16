@@ -25,7 +25,10 @@ class EditAccountInfomation extends React.Component {
     componentWillMount() {
         axios({
             method: 'GET',
-            url: 'https://mighty-retreat-21374.herokuapp.com/api/profile/getUserInfo?token=' + localStorage.getItem("token"),
+            url: 'https://mighty-retreat-21374.herokuapp.com/api/profile/getUserInfo',
+            headers: {
+                Authorization: "Bearer" + localStorage.getItem("token")
+            },
             data: null
         }).then((response) => {
             // handle success
@@ -62,7 +65,10 @@ class EditAccountInfomation extends React.Component {
             }
             axios({
                 method: 'POST',
-                url: 'https://mighty-retreat-21374.herokuapp.com/api/profile/editAvatar?token=' + localStorage.getItem("token"),
+                url: 'https://mighty-retreat-21374.herokuapp.com/api/profile/editAvatar',
+                headers: {
+                    Authorization: "Bearer" + localStorage.getItem("token")
+                },
                 data: formData
 
             }).then((response) => {
@@ -98,7 +104,10 @@ class EditAccountInfomation extends React.Component {
 
         axios({
             method: 'PUT',
-            url: 'https://mighty-retreat-21374.herokuapp.com/api/profile/editUserInfo?token=' + localStorage.getItem("token"),
+            url: 'https://mighty-retreat-21374.herokuapp.com/api/profile/editUserInfo',
+            headers: {
+                Authorization: "Bearer" + localStorage.getItem("token")
+            },
             data: {
                 phone: this.state.phone,
                 address: this.state.address
