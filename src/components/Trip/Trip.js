@@ -15,7 +15,7 @@ class Trip extends React.Component {
         return (
             <div onMouseOver={this.showDescription} onMouseOut={this.hideDescription}>
                 <div className="trip d-flex" style={{ backgroundImage: "url(" + StringConstant.IMAGE_PATH + this.state.tripInfo.cover + ")", backgroundPosition: "center" }}>
-                    <span className="topright">{this.state.tripInfo.price + " VND"}</span>
+                    <span className="topright bg-light text-dark">{this.state.tripInfo.price + " VND"}</span>
                     <span className="mx-auto my-auto text-center w-50">{this.state.description}</span>
                 </div>
             </div>

@@ -65,7 +65,7 @@ class TripDetail extends React.Component {
 
     render() {
         if (this.state === null) return null;
-        console.log("avatar",  this.state.avatar)
+        console.log("avatar", this.state.avatar)
         return (
             <div>
                 <div className="banner" style={{ backgroundImage: "url(" + StringConstant.IMAGE_PATH + this.state.trip.cover + ")" }}></div>
@@ -124,7 +124,7 @@ class TripDetail extends React.Component {
                     <div className="h1">
                         Description
                     </div>
-                    <SlideShow />
+                    <SlideShow tripId={localStorage.getItem("param")} />
                     <p>{this.state.trip.description}</p>
                     <div className="h1">
                         Comment

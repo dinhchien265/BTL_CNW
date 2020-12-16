@@ -121,19 +121,24 @@ class CreateTrip extends React.Component {
 
     uploadImageFile = (files, idTrip) => {
         console.log("333333");
-        let formData = new FormData();
         for (let i = 0; i < files.length; i++) {
-            formData.append(`image`, files[i])
+            this.uploadSingleImage(files[i], idTrip);
         }
+    }
+
+    uploadSingleImage = (file, idTrip) => {
+
+        let formData = new FormData();
+        formData.append(`image`, file)
+
         for (var key of formData.entries()) {
             console.log(key[1]);
         }
-
         axios({
             method: 'POST',
             url: 'https://mighty-retreat-21374.herokuapp.com/api/trip/addImage/' + idTrip + '?token=' + localStorage.getItem("token"),
             headers: {
-                'Content-type': 'multipart/form-data; boundary=<calculated when request is sent>'
+                'Content-type': 'multipart/form-data; boundary=<calculated when request is sent>',
             },
             data: formData
         }).then((response) => {
@@ -152,7 +157,7 @@ class CreateTrip extends React.Component {
         if (this.state.role !== "contributor") return (<RegistContributor />)
         return (
             <div className="container mt-5">
-                <form onSubmit={this.createTrip} >
+                <form onSubmit={this.createTrip} encType="multipart/form-data">
                     <label>Name</label>
                     <input type="text" className="form form-control" name="name" onChange={this.onChange} value={this.state.name} required />
                     <label>Description</label>
