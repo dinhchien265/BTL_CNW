@@ -2,6 +2,71 @@ import React from 'react';
 import axios from 'axios';
 import RegistContributor from './../RegistContributor/RegistContributor';
 
+const citis = [
+    "yen-bai",
+    "vung-tau",
+    "vinh-phuc",
+    "vinh-long",
+    "tuyen quang",
+    "tra-vinh",
+    "tien-giang",
+    "thua-thien-hue",
+    "thanh-hoa",
+    "thai-nguyen",
+    "thai-binh",
+    "tay-ninh",
+    "son-la",
+    "soc-trang",
+    "quang-tri",
+    "quang-ninh",
+    "quang-ngai",
+    "quang-nam",
+    "quang-binh",
+    "phu-yen",
+    "phu-tho",
+    "ninh-thuan",
+    "ninh-binh",
+    "nghe-an",
+    "nam-dinh",
+    "long-an",
+    "lao-cai",
+    "lang-son",
+    "lam-dong",
+    "lai-chau",
+    "kon-tum",
+    "kien-giang",
+    "khanh-hoa",
+    "hung-yen",
+    "hoa-binh",
+    "ho-chi-minh",
+    "hau-giang",
+    "hai-phong",
+    "hai-duong",
+    "ha-tinh",
+    "ha-noi",
+    "ha-nam",
+    "ha-giang",
+    "gia-lai",
+    "dong-thap",
+    "dong-nai",
+    "dien-bien",
+    "dak-nong",
+    "dak-lak",
+    "da-nang",
+    "cao-bang",
+    "can-tho",
+    "ca-mau",
+    "binh-thuan",
+    "binh-phuoc",
+    "binh-duong",
+    "ben-tre",
+    "bac-ninh",
+    "bac-lieu",
+    "bac-kan",
+    "bac-giang",
+    "an-giang"
+]
+
 class CreateTrip extends React.Component {
 
     constructor(props) {
@@ -144,7 +209,6 @@ class CreateTrip extends React.Component {
         }).then((response) => {
             // handle success
             console.log(response.data);
-            alert("Success");
         }).catch((error) => {
             // handle error
             console.log(error);
@@ -178,7 +242,15 @@ class CreateTrip extends React.Component {
                     <label>Group size</label>
                     <input type="number" className="form form-control" name="group_size" onChange={this.onChange} value={this.state.group_size} required />
                     <label>City</label>
-                    <input type="text" className="form form-control" name="city" onChange={this.onChange} value={this.state.city} required />
+                    <select className="form form-control" name="city" onChange={this.onChange} required >
+                        {
+                            citis.map((city, index) => {
+                                return (
+                                    <option key="index">{city}</option>
+                                )
+                            })
+                        }
+                    </select>
                     <label>Cover</label>
                     <input type="file" className="form form-control" name="cover" onChange={this.handleCoverImageFile} required />
                     <label>Image</label>
