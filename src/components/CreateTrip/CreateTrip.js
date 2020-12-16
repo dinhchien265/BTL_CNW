@@ -177,6 +177,7 @@ class CreateTrip extends React.Component {
             if (files !== '') {
                 this.uploadImageFile(files, idTrip);
             }
+            alert("Success");
 
         }).catch((error) => {
             // handle error
@@ -254,7 +255,7 @@ class CreateTrip extends React.Component {
                     <label>Cover</label>
                     <input type="file" className="form form-control" name="cover" onChange={this.handleCoverImageFile} required />
                     <label>Image</label>
-                    <input type="file" className="form form-control" name="mulfile" onChange={this.handleImageFile} multiple />
+                    <input type="file" className="form form-control" name="mulfile" onChange={this.handleImageFile} multiple required />
                     <input type="submit" className="btn btn-info m-3" value="Create"></input>
                     <button className="btn btn-info">Cancel</button>
                 </form>

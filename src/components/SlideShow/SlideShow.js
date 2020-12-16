@@ -17,10 +17,6 @@ class SlideShow extends React.Component {
         super(props);
         this.state = {
             images: [
-                "https://uploads.codesandbox.io/uploads/user/9bb33ddb-fe77-4a9c-80fe-ddd9ae0be9f9/LMZe-slide_2.jpg",
-                "https://uploads.codesandbox.io/uploads/user/9bb33ddb-fe77-4a9c-80fe-ddd9ae0be9f9/HhJR-slide_3.jpg",
-                "https://uploads.codesandbox.io/uploads/user/9bb33ddb-fe77-4a9c-80fe-ddd9ae0be9f9/q_Qy-slide_5.jpg",
-                "https://uploads.codesandbox.io/uploads/user/9bb33ddb-fe77-4a9c-80fe-ddd9ae0be9f9/S97O-slide_1.jpg"
             ]
         }
     }
@@ -48,7 +44,11 @@ class SlideShow extends React.Component {
     }
 
     render() {
+        if (this.state.images == null) {
+            return null;
+        }
         return (
+
             <div className="slide-container">
                 <Zoom {...zoomOutProperties}>
                     {this.state.images.map((each, index) => (
