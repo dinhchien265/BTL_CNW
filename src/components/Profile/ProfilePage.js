@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import YourTrip from './YourTrips';
 import EditTrip from '../Trip/EditTrip';
+import ChangePassword from './ChangePassword';
 
 class ProfilePage extends React.Component {
     render() {
@@ -30,7 +31,7 @@ class ProfilePage extends React.Component {
                                 <NavLink to="/notification">Notification</NavLink>
                             </li>
                             <li className="list-group-item">
-                                <NavLink to="/password">Password</NavLink>
+                                <NavLink to="/profile/password">Password</NavLink>
                             </li>
                         </ul>
                     </div>
@@ -47,6 +48,9 @@ class ProfilePage extends React.Component {
                             </Route>
                             <Route path="/profile/edit-trip">
                                 <EditTrip />
+                            </Route>
+                            <Route path="/profile/password">
+                                <ChangePassword />
                             </Route>
                         </Switch>
                     </div>

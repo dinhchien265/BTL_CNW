@@ -3,6 +3,7 @@ import * as StringConstant from './../../constants/String';
 import axios from 'axios';
 import ListComment from '../Comment/ListComment';
 import CreateComment from '../Comment/CreateComment';
+import SlideShow from '../SlideShow/SlideShow';
 
 class TripDetail extends React.Component {
     constructor(props) {
@@ -123,6 +124,7 @@ class TripDetail extends React.Component {
                     <div className="h1">
                         Description
                     </div>
+                    <SlideShow />
                     <p>{this.state.trip.description}</p>
                     <div className="h1">
                         Comment
