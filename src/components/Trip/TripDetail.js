@@ -11,7 +11,7 @@ class TripDetail extends React.Component {
         this.state = {
             trip: '',
             date: '',
-            participants: 0
+            participants: 1
         }
     }
 
@@ -42,6 +42,10 @@ class TripDetail extends React.Component {
 
     requestTrip = (event) => {
         event.preventDefault();
+        if (localStorage.getItem("token") === null) {
+            alert("Login first");
+            return;
+        }
         axios({
             method: 'POST',
             url: 'https://mighty-retreat-21374.herokuapp.com/api/order/create/' + localStorage.getItem("param") + "?token=" + localStorage.getItem("token"),
