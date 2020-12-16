@@ -16,8 +16,7 @@ class SlideShow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            images: [
-            ]
+            images: null
         }
     }
 
@@ -44,7 +43,7 @@ class SlideShow extends React.Component {
     }
 
     render() {
-        if (this.state.images === undefined) {
+        if (this.state.images === undefined || this.state.images === null || this.state.images.length === 0) {
             return null;
         }
         return (
