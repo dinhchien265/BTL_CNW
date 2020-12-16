@@ -44,7 +44,7 @@ class SlideShow extends React.Component {
     }
 
     render() {
-        if (this.state.images == null) {
+        if (this.state.images === undefined) {
             return null;
         }
         return (
