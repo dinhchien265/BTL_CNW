@@ -15,7 +15,9 @@ class EditAccountInfomation extends React.Component {
             phone: '',
             address: '',
             avatar: '',
-            file: ''
+            file: '',
+            file2:'',
+            cover: ''
         }
 
     }
@@ -28,6 +30,9 @@ class EditAccountInfomation extends React.Component {
         }).then((response) => {
             // handle success
             console.log(response.data);
+            console.log("why????")
+            localStorage.setItem("avatar_user",response.data.data.avatar);
+            console.log("hahaha",localStorage.getItem("avatar_user"))
             // this.state.name = response.name;
             // this.state.email = response.email;
             this.setState({
@@ -35,7 +40,9 @@ class EditAccountInfomation extends React.Component {
                 email: response.data.data.email,
                 phone: response.data.data.phone,
                 address: response.data.data.address,
-                avatar: response.data.data.avatar
+                avatar: response.data.data.avatar,
+                cover: response.data.data.cover
+
             })
         }).catch((error) => {
             // handle error
@@ -45,6 +52,7 @@ class EditAccountInfomation extends React.Component {
 
     updateUserInfo = () => {
         let file = this.state.file;
+        let file2 = this.state.file2
         if (file !== '') {
             let formData = new FormData();
             formData.append('avatar', file);
@@ -59,13 +67,35 @@ class EditAccountInfomation extends React.Component {
 
             }).then((response) => {
                 // handle success
+ 
                 console.log(response.data);
             }).catch((error) => {
                 // handle error
                 console.log(error);
             });
-
         }
+
+        if (file2 !== '') {
+            let formData2 = new FormData();
+            formData2.append('cover', file2);
+            console.log(file2);
+            for (var key of formData2.entries()) {
+                console.log(key[1]);
+            }
+            axios({
+                method: 'POST',
+                url: 'https://mighty-retreat-21374.herokuapp.com/api/profile/editCover?token=' + localStorage.getItem("token"),
+                data: formData2
+
+            }).then((response) => {
+                // handle success
+                console.log(response.data);
+            }).catch((error) => {
+                // handle error
+                console.log(error);
+            });
+        }
+
         axios({
             method: 'PUT',
             url: 'https://mighty-retreat-21374.herokuapp.com/api/profile/editUserInfo?token=' + localStorage.getItem("token"),
@@ -77,7 +107,7 @@ class EditAccountInfomation extends React.Component {
             // handle success
             console.log(response.data);
             console.log(this.props);
-            this.props.history.push("/profile/account");
+            window.location.href="/profile/account";
             console.log("abc");
         }).catch((error) => {
             // handle error
@@ -95,11 +125,24 @@ class EditAccountInfomation extends React.Component {
             file: event.target.files[0]
         })
     }
+    handleFile2 = (event) => {
+        this.setState({
+            file2: event.target.files[0]
+        })
+    }
 
 
     render() {
         return (
             <div>
+                <label className="cover-container" htmlFor="cover-upload">
+                    <i className="fa fa-pencil icon-edit-avatar" aria-hidden="true">
+                    </i>
+                    <div className="banner" style={{ backgroundImage: "url(" + StringConstant.IMAGE_PATH + this.state.cover + ")" }}></div>
+                    <p className="text-center">Cover</p>
+                    <input id="cover-upload" type="file" className="input-image" onChange={this.handleFile2}></input>
+                </label>
+                <br />
                 <span className="h3">Account infomation</span>
                 <br />
                 <label className="avatar-container" htmlFor="avatar-upload">

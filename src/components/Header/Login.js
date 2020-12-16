@@ -34,9 +34,10 @@ class Login extends React.Component {
         }).then((response) => {
             // handle success
             localStorage.setItem("token", response.data.token);
+            localStorage.setItem("avatar_user", response.data.user_info[0].avatar)
+            localStorage.setItem("cover_user", response.data.user_info[0].cover)
             this.props.login();
             console.log(response.data.token);
-            window.location.reload();
         }).catch((error) => {
             // handle error
             console.log(error);

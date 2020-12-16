@@ -64,7 +64,7 @@ class TripDetail extends React.Component {
 
     render() {
         if (this.state === null) return null;
-
+        console.log("avatar",  this.state.avatar)
         return (
             <div>
                 <div className="banner" style={{ backgroundImage: "url(" + StringConstant.IMAGE_PATH + this.state.trip.cover + ")" }}></div>

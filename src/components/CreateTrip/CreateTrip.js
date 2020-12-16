@@ -104,9 +104,6 @@ class CreateTrip extends React.Component {
 
 
     render() {
-        if (localStorage.getItem("token") === null) return (
-            <div className="h3 text-center">Login first</div>
-        )
         if (this.state.role !== "contributor") return (<RegistContributor />)
         return (
             <div className="container mt-5">
@@ -124,7 +121,7 @@ class CreateTrip extends React.Component {
                     <label>Price</label>
                     <input type="number" className="form form-control" name="price" onChange={this.onChange} value={this.state.price} required />
                     <label>languages</label>
-                    <input type="number" className="form form-control" name="languages" onChange={this.onChange} value={this.state.languages} required />
+                    <input type="string" className="form form-control" name="languages" onChange={this.onChange} value={this.state.languages} required />
                     <label>Group size</label>
                     <input type="number" className="form form-control" name="group_size" onChange={this.onChange} value={this.state.group_size} required />
                     <label>City</label>

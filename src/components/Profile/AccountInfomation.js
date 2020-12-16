@@ -13,7 +13,8 @@ class AccountInfomation extends React.Component {
             email: '',
             phone: '',
             address: '',
-            avatar: ''
+            avatar: '',
+            cover: ''
         }
 
     }
@@ -29,6 +30,7 @@ class AccountInfomation extends React.Component {
         }).then((response) => {
             // handle success
             console.log(response.data);
+            localStorage.setItem("avatar_user",response.data.data.avatar)
             // this.state.name = response.name;
             // this.state.email = response.email;
             this.setState({
@@ -36,19 +38,21 @@ class AccountInfomation extends React.Component {
                 email: response.data.data.email,
                 phone: response.data.data.phone,
                 address: response.data.data.address,
-                avatar: response.data.data.avatar
+                avatar: response.data.data.avatar,
+                cover: response.data.data.cover
             })
         }).catch((error) => {
             // handle error
             console.log(error);
         });
-    }
+    }   
 
 
     render() {
 
         return (
             <div>
+                <div className="banner" style={{ backgroundImage: "url(" + StringConstant.IMAGE_PATH + this.state.cover + ")" }}></div>
                 <span className="h3">Account infomation</span>
                 <Link to="/profile/account/edit" className="h3 ml-5 text-primary">Edit</Link>
                 <br />

@@ -61,6 +61,11 @@
   display: inline-block;
   position: relative;
 }
+.cover-container{
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
 .input-image{
   display: none;
   width: 100%;
